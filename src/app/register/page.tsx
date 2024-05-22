@@ -88,6 +88,9 @@ const RegisterPage = () => {
                 placeholder="Username"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
+              {errors.userName && (
+                <p className="text-red-500 text-sm">Username is required</p>
+              )}
             </div>
             <div className="mb-4">
               <input
@@ -97,6 +100,9 @@ const RegisterPage = () => {
                 placeholder="Email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">Email is required</p>
+              )}
             </div>
           </div>
           <div className="md:flex gap-3">
@@ -110,6 +116,9 @@ const RegisterPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
+              {errors.password && (
+                <p className="text-red-500 text-sm">Password is required</p>
+              )}
             </div>
             <div className="mb-4">
               <input
@@ -139,6 +148,9 @@ const RegisterPage = () => {
                 placeholder="First Name"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
+              {errors.firstName && (
+                <p className="text-red-500 text-sm">First Name is required</p>
+              )}
             </div>
             <div className="mb-4">
               <input
@@ -148,17 +160,23 @@ const RegisterPage = () => {
                 placeholder="Last Name"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
+              {errors.lastName && (
+                <p className="text-red-500 text-sm">Last Name is required</p>
+              )}
             </div>
           </div>
           <div className="md:flex gap-3">
             <div className="mb-4">
               <input
                 {...register("phoneNumber", { required: true })}
-                type="text"
+                type="number"
                 name="phoneNumber"
                 placeholder="Phone Number"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
+              {errors.phoneNumber && (
+                <p className="text-red-500 text-sm">Phone Number is required</p>
+              )}
             </div>
             <div className="mb-4">
               <input
@@ -168,6 +186,9 @@ const RegisterPage = () => {
                 placeholder="Location"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
               />
+              {errors.location && (
+                <p className="text-red-500 text-sm">Location is required</p>
+              )}
             </div>
           </div>
           <div className="md:flex gap-3">
@@ -179,6 +200,7 @@ const RegisterPage = () => {
               >
                 <option value="">Select Blood Type</option>
                 <option value="A_POS">A+</option>
+
                 <option value="A_NEG">A-</option>
                 <option value="B_POS">B+</option>
                 <option value="B_NEG">B-</option>
@@ -187,6 +209,9 @@ const RegisterPage = () => {
                 <option value="O_POS">O+</option>
                 <option value="O_NEG">O-</option>
               </select>
+              {errors.bloodType && (
+                <p className="text-red-500 text-sm">Blood Type is required</p>
+              )}
             </div>
             <div className="mb-4 md:w-[50%]">
               <select
@@ -197,6 +222,11 @@ const RegisterPage = () => {
                 <option value="yes">Can Donate Blood - Yes</option>
                 <option value="no">Can Donate Blood - No</option>
               </select>
+              {errors.canDonateBlood && (
+                <p className="text-red-500 text-sm">
+                  Can Donate Blood is required
+                </p>
+              )}
             </div>
           </div>
 

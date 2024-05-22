@@ -1,24 +1,19 @@
 "use client";
 
+import LDForm from "@/components/Forms/LDForm";
+import LDInput from "@/components/Forms/LDInput";
 import { loginUser } from "@/services/actions/loginUser";
 import { storeUserInfo } from "@/services/auth.service";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
-type Inputs = {
-  emailOrUserName: string;
-  password: string;
-};
+
 
 const LoginPage = () => {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
+  
+  const handleLogin = async (data: FieldValues) => {
     try {
       const res = await loginUser(data);
       if (res?.data?.accessToken) {
@@ -46,22 +41,22 @@ const LoginPage = () => {
             Login to your account
           </p>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <LDForm onSubmit={handleLogin}>
           <div className="mb-4">
-            <input
-              {...register("emailOrUserName", { required: true })}
-              type="text"
+          <LDInput
               name="emailOrUserName"
+              type="text"
               placeholder="Email or Username"
+              required={true}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
             />
           </div>
           <div className="mb-4">
-            <input
-              {...register("password", { required: true })}
-              type="password"
+            <LDInput
               name="password"
+              type="password"
               placeholder="Password"
+              required={true}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
             />
           </div>
@@ -80,7 +75,7 @@ const LoginPage = () => {
               here
             </p>
           </div>
-        </form>
+        </LDForm>
       </div>
     </div>
   );
