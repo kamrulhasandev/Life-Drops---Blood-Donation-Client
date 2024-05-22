@@ -2,17 +2,18 @@
 import { useState } from "react";
 import { IoMenuOutline, IoCloseSharp } from "react-icons/io5";
 import Link from "next/link";
-import { getUserInfo, removeUser } from "@/services/auth.service";
-import { useRouter } from "next/navigation";
+
+
+import dynamic from "next/dynamic";
 
 const Navbar = () => {
+  const AuthButton = dynamic(
+    () => import("@/components/UI/AuthButton/AuthButton"),
+    { ssr: false }
+  );
+
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const userInfo = getUserInfo();
-  const router = useRouter();
-  const handleLogOut = () => {
-    removeUser();
-    router.refresh();
-  };
+  
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -40,11 +41,7 @@ const Navbar = () => {
             >
               About Us
             </Link>
-            {userInfo.id ? (
-              <button onClick={handleLogOut}>Logout</button>
-            ) : (
-              <Link href={"/login"}>Login</Link>
-            )}
+            <AuthButton />
           </ul>
         </div>
         <div className="md:hidden" onClick={toggleMobileMenu}>
@@ -77,9 +74,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/login" onClick={toggleMobileMenu}>
-              Login
-            </Link>
+            <AuthButton />
           </li>
         </ul>
       )}
