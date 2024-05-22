@@ -6,6 +6,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { registerUser } from "./../../services/actions/register";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/services/actions/loginUser";
+import { storeUserInfo } from "@/services/auth.service";
 
 type Inputs = {
   userName: string;
@@ -48,7 +50,14 @@ const RegisterPage = () => {
         const res = await registerUser(registerData);
         if (res?.data?.id) {
           toast.success("Registration successfully.");
-          router.push("/login");
+          const userInfo = await loginUser({
+            emailOrUserName: data.email,
+            password: password,
+          });
+          if (userInfo?.data?.accessToken) {
+            storeUserInfo({ accessToken: userInfo?.data?.accessToken });
+            router.push("/");
+          }
         }
       } catch (error: any) {
         console.log(error);

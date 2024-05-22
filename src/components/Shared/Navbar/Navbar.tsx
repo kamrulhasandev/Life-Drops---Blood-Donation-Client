@@ -2,9 +2,17 @@
 import { useState } from "react";
 import { IoMenuOutline, IoCloseSharp } from "react-icons/io5";
 import Link from "next/link";
+import { getUserInfo, removeUser } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const userInfo = getUserInfo();
+  const router = useRouter();
+  const handleLogOut = () => {
+    removeUser();
+    router.refresh();
+  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -32,7 +40,11 @@ const Navbar = () => {
             >
               About Us
             </Link>
-            <Link href={"/login"}>Login</Link>
+            {userInfo.id ? (
+              <button onClick={handleLogOut}>Logout</button>
+            ) : (
+              <Link href={"/login"}>Login</Link>
+            )}
           </ul>
         </div>
         <div className="md:hidden" onClick={toggleMobileMenu}>
