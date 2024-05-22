@@ -2,10 +2,60 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { registerUser } from "./../../services/actions/register";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
+type Inputs = {
+  userName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  location: string;
+  bloodType: string;
+  canDonateBlood: string;
+};
 
 const RegisterPage = () => {
+  const router = useRouter();
   const [canDonateBlood, setCanDonateBlood] = useState("yes");
   const [bloodType, setBloodType] = useState("");
+  const [password, setPassword] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
+    const canDonate = canDonateBlood === "yes" ? true : false;
+
+    if (data.password === data.confirmPassword) {
+      const { confirmPassword, ...rest } = data;
+      const registerData = {
+        ...rest,
+        password: data.password,
+        bloodType,
+        canDonateBlood: canDonate,
+      };
+      console.log(registerData);
+
+      try {
+        const res = await registerUser(registerData);
+        if (res?.data?.id) {
+          toast.success("Registration successfully.");
+          router.push("/login");
+        }
+      } catch (error: any) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md md:overflow-y-auto">
@@ -19,123 +69,144 @@ const RegisterPage = () => {
         <div>
           <p className="text-center text-gray-600 mb-4">Create an account</p>
         </div>
-        <div className="md:flex gap-3">
-          <div className="mb-4">
-            <input
-              type="text"
-              name="userName"
-              placeholder="Username"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="md:flex gap-3">
+            <div className="mb-4">
+              <input
+                {...register("userName", { required: true })}
+                type="text"
+                name="userName"
+                placeholder="Username"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                {...register("email", { required: true })}
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
+          <div className="md:flex gap-3">
+            <div className="mb-4">
+              <input
+                {...register("password", { required: true })}
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                {...register("confirmPassword", {
+                  required: true,
+                  validate: (value) =>
+                    value === password || "The passwords do not match",
+                })}
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-sm">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="md:flex gap-3">
-          <div className="mb-4">
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
+          <div className="md:flex gap-3">
+            <div className="mb-4">
+              <input
+                {...register("firstName", { required: true })}
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                {...register("lastName", { required: true })}
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
+          <div className="md:flex gap-3">
+            <div className="mb-4">
+              <input
+                {...register("phoneNumber", { required: true })}
+                type="text"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                {...register("location", { required: true })}
+                type="text"
+                name="location"
+                placeholder="Location"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+              />
+            </div>
           </div>
-        </div>
-        <div className="md:flex gap-3">
-          <div className="mb-4">
-            <input
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
+          <div className="md:flex gap-3">
+            <div className="mb-4 md:w-[50%]">
+              <select
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+                value={bloodType}
+                onChange={(e) => setBloodType(e.target.value)}
+              >
+                <option value="">Select Blood Type</option>
+                <option value="A_POS">A+</option>
+                <option value="A_NEG">A-</option>
+                <option value="B_POS">B+</option>
+                <option value="B_NEG">B-</option>
+                <option value="AB_POS">AB+</option>
+                <option value="AB_NEG">AB-</option>
+                <option value="O_POS">O+</option>
+                <option value="O_NEG">O-</option>
+              </select>
+            </div>
+            <div className="mb-4 md:w-[50%]">
+              <select
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
+                value={canDonateBlood}
+                onChange={(e) => setCanDonateBlood(e.target.value)}
+              >
+                <option value="yes">Can Donate Blood - Yes</option>
+                <option value="no">Can Donate Blood - No</option>
+              </select>
+            </div>
           </div>
-          <div className="mb-4">
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
-          </div>
-        </div>
-        <div className="md:flex gap-3">
-          <div className="mb-4">
-            <input
-              type="text"
-              name="phoneNumber"
-              placeholder="Phone Number"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              type="text"
-              name="location"
-              placeholder="Location"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-            />
-          </div>
-        </div>
-        <div className="md:flex gap-3">
-          <div className="mb-4 md:w-[50%]">
-            <select
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-              value={bloodType}
-              onChange={(e) => setBloodType(e.target.value)}
-            >
-              <option value="">Select Blood Type</option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-            </select>
-          </div>
-          <div className="mb-4 md:w-[50%]">
-            <select
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-              value={canDonateBlood}
-              onChange={(e) => setCanDonateBlood(e.target.value)}
-            >
-              <option value="yes">Can Donate Blood - Yes</option>
-              <option value="no">Can Donate Blood - No</option>
-            </select>
-          </div>
-        </div>
 
-        <div className="">
-          <button
-            type="submit"
-            className="bg-[#EB2C29] hover:bg-[#ec524f] w-full text-white px-4 py-2 rounded-md focus:outline-none"
-          >
-            Sign Up
-          </button>
-          <p className=" text-sm text-center py-2">
-            Already have an account{" "}
-            <Link className="text-[#EB2C29]" href={"/login"}>
-              Login
-            </Link>{" "}
-            here
-          </p>
-        </div>
+          <div className="">
+            <button
+              type="submit"
+              className="bg-[#EB2C29] hover:bg-[#ec524f] w-full text-white px-4 py-2 rounded-md focus:outline-none"
+            >
+              Sign Up
+            </button>
+            <p className=" text-sm text-center py-2">
+              Already have an account{" "}
+              <Link className="text-[#EB2C29]" href={"/login"}>
+                Login
+              </Link>{" "}
+              here
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   );

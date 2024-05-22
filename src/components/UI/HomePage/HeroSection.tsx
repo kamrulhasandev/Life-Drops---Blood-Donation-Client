@@ -17,10 +17,10 @@ const HeroSection = () => {
           mission to spread hope and healing far and wide.
         </p>
         <div className="flex items-center gap-2 pt-5">
-          <button className="bg-[#EB2C29] border-2 border-[#EB2C29] py-2 px-3 text-white rounded-sm">
+          <button className="bg-[#EB2C29] border-2 border-[#EB2C29] py-2 px-3 text-white rounded-md">
             Join as a Donor
           </button>
-          <button className="border-2 border-[#EB2C29] py-2 px-3 text-[#EB2C29] rounded-sm">
+          <button className="border-2 border-[#EB2C29] py-2 px-3 text-[#EB2C29] rounded-md">
             Search Donors
           </button>
         </div>
