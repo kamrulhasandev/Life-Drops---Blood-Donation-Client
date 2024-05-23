@@ -6,13 +6,14 @@ import { loginUser } from "@/services/actions/loginUser";
 import { storeUserInfo } from "@/services/auth.service";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
-
 const LoginPage = () => {
   const router = useRouter();
-  
+  const [error, setError] = useState("");
+
   const handleLogin = async (data: FieldValues) => {
     try {
       const res = await loginUser(data);
@@ -20,6 +21,8 @@ const LoginPage = () => {
         storeUserInfo({ accessToken: res?.data?.accessToken });
         toast.success("Login Successfully.");
         router.push("/");
+      } else {
+        setError(res?.message);
       }
     } catch (error: any) {
       console.log(error);
@@ -37,13 +40,14 @@ const LoginPage = () => {
           </div>
         </div>
         <div>
-          <p className="text-center text-gray-600 mb-4">
-            Login to your account
-          </p>
+          <p className="text-center text-gray-600">Login to your account</p>
+          {error && (
+            <p className="text-center text-sm text-[#EB2C29] mb-2">{error}</p>
+          )}
         </div>
         <LDForm onSubmit={handleLogin}>
           <div className="mb-4">
-          <LDInput
+            <LDInput
               name="emailOrUserName"
               type="text"
               placeholder="Email or Username"
