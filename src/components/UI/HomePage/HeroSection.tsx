@@ -3,7 +3,8 @@ import assets from "@/assets";
 
 const HeroSection = () => {
   return (
-    <div className="md:flex items-center py-10">
+    <div className="max-w-screen-xl mx-auto px-2">
+      <div className="md:flex items-center py-10">
       <div className="md:w-1/2 flex flex-col gap-3">
         <h2 className="text-3xl font-bold text-[#EB2C29]">
           Donate Blood, Be a Hero
@@ -28,6 +29,7 @@ const HeroSection = () => {
       <div className="md:w-1/2 flex justify-end items-center">
         <Image src={assets.images.heroImg} height={500} width={500} alt="img" />
       </div>
+    </div>
     </div>
   );
 };

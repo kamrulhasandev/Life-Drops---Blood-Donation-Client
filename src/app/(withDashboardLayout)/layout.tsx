@@ -88,7 +88,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </li>
             <li onClick={toggleSidebar}>
               <Link
-                href="/received-request"
+                href="/dashboard/received-blood-request"
                 className="block px-4 py-2 hover:bg-gray-700"
               >
                 Received Blood Request

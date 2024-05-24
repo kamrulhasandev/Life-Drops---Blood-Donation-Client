@@ -1,9 +1,11 @@
 import HeroSection from "@/components/UI/HomePage/HeroSection";
+import Testimonials from "@/components/UI/HomePage/Testimonials";
 
 const HomePage = () => {
   return (
-    <div className="max-w-screen-xl mx-auto px-2">
+    <div>
       <HeroSection />
+      <Testimonials/>
     </div>
   );
 };
