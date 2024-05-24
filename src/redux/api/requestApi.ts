@@ -10,7 +10,14 @@ export const requestApi = baseApi.injectEndpoints({
         data,
       }),
     }),
+    getSentDonationRequest: build.query({
+      query: () => ({
+        url: `/sent-donation-request`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useAddRequestMutation } = requestApi;
+export const { useAddRequestMutation, useGetSentDonationRequestQuery } =
+  requestApi;
