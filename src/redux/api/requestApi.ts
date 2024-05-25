@@ -1,4 +1,4 @@
-import { tagTypes } from "../tagTypes";
+
 import { baseApi } from "./baseApi";
 
 export const requestApi = baseApi.injectEndpoints({
@@ -27,13 +27,10 @@ export const requestApi = baseApi.injectEndpoints({
     }),
     updateRequestStatus: build.mutation({
       query: ({ requestId, status }) => {
-        console.log("Request ID:", requestId);
-        console.log("Status:", status);
-    
         return {
           url: `/donation-request/${requestId}`,
           method: "PUT",
-          data: status,
+          data: {status},
         };
       },
     }),
