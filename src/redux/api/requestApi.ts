@@ -1,4 +1,4 @@
-
+import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
 export const requestApi = baseApi.injectEndpoints({
@@ -10,31 +10,32 @@ export const requestApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
-      
+      invalidatesTags: [tagTypes.request],
     }),
     getSentDonationRequest: build.query({
       query: () => ({
         url: `/sent-donation-request`,
         method: "GET",
       }),
-      
+      providesTags: [tagTypes.request],
     }),
     getReceivedDonationRequest: build.query({
       query: () => ({
         url: `/received-donation-request`,
         method: "GET",
       }),
+      providesTags: [tagTypes.request],
     }),
     updateRequestStatus: build.mutation({
       query: ({ requestId, status }) => {
         return {
           url: `/donation-request/${requestId}`,
           method: "PUT",
-          data: {status},
+          data: { status },
         };
       },
+      invalidatesTags: [tagTypes.request],
     }),
-    
   }),
 });
 

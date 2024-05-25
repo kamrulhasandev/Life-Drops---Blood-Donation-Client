@@ -1,3 +1,4 @@
+import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
 export const donorApi = baseApi.injectEndpoints({
@@ -8,12 +9,14 @@ export const donorApi = baseApi.injectEndpoints({
         url: `/all-donors/${donorId}`,
         method: "GET",
       }),
+      providesTags: [tagTypes.user],
     }),
     getAllDonors: build.query({
       query: () => ({
         url: `/all-donors`,
         method: "GET",
       }),
+      providesTags: [tagTypes.user],
     }),
     updateUserStatus: build.mutation({
       query: ({ id, status }) => {
@@ -23,6 +26,7 @@ export const donorApi = baseApi.injectEndpoints({
           data: { status },
         };
       },
+      invalidatesTags: [tagTypes.user],
     }),
     updateUserRole: build.mutation({
       query: ({ id, role }) => {
@@ -32,6 +36,7 @@ export const donorApi = baseApi.injectEndpoints({
           data: { role },
         };
       },
+      invalidatesTags: [tagTypes.user],
     }),
   }),
 });
