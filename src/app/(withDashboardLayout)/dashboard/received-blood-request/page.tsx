@@ -82,7 +82,21 @@ const ReceivedBloodRequestPage = () => {
                 <td className="px-6 py-4 whitespace-no-wrap">
                   {item?.bloodType}
                 </td>
-                <td className="px-6 py-4 whitespace-no-wrap">{item?.status}</td>
+                <td className="px-6 py-4 whitespace-no-wrap">
+                  <span
+                    className={`px-2 rounded-md text-white ${
+                      item?.status === "PENDING"
+                        ? "bg-yellow-500"
+                        : item?.status === "REJECTED"
+                        ? "bg-red-500"
+                        : item?.status === "APPROVED"
+                        ? "bg-green-500"
+                        : "bg-gray-500"
+                    }`}
+                  >
+                    {item?.status}
+                  </span>
+                </td>
                 <td className="px-6 py-4 whitespace-no-wrap flex gap-2">
                   <button
                     className="bg-green-500 px-2 text-white rounded-md"
@@ -98,10 +112,14 @@ const ReceivedBloodRequestPage = () => {
                   </button>
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap">
-                <button
+                  <button
                     onClick={() => handleDetailsClick(item)}
-                    className={`bg-teal-500 px-2 rounded-md text-white ${item.status !== 'APPROVED' ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    disabled={item.status !== 'APPROVED'}
+                    className={`bg-teal-500 px-2 rounded-md text-white ${
+                      item.status !== "APPROVED"
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
+                    disabled={item.status !== "APPROVED"}
                   >
                     Contact
                   </button>
@@ -116,15 +134,30 @@ const ReceivedBloodRequestPage = () => {
           <div>
             <h2 className="text-lg font-bold mb-4">Request Details</h2>
             <p>
-              <strong>Name:</strong> {`${selectedRequest.firstName} ${selectedRequest.lastName}`}
+              <strong>Name:</strong>{" "}
+              {`${selectedRequest.firstName} ${selectedRequest.lastName}`}
             </p>
-            <p><strong>Email:</strong> {selectedRequest.email}</p>
-            <p><strong>Phone:</strong> {selectedRequest.phoneNumber}</p>
-            <p><strong>Location:</strong> {selectedRequest.location}</p>
-            <p><strong>Blood Type:</strong> {selectedRequest.bloodType}</p>
-            <p><strong>Status:</strong> {selectedRequest.status}</p>
-            <p><strong>Hospital Name:</strong> {selectedRequest.hospitalName}</p>
-            <p><strong>Date Of Donation:</strong> {selectedRequest.donationDate}</p>
+            <p>
+              <strong>Email:</strong> {selectedRequest.email}
+            </p>
+            <p>
+              <strong>Phone:</strong> {selectedRequest.phoneNumber}
+            </p>
+            <p>
+              <strong>Location:</strong> {selectedRequest.location}
+            </p>
+            <p>
+              <strong>Blood Type:</strong> {selectedRequest.bloodType}
+            </p>
+            <p>
+              <strong>Status:</strong> {selectedRequest.status}
+            </p>
+            <p>
+              <strong>Hospital Name:</strong> {selectedRequest.hospitalName}
+            </p>
+            <p>
+              <strong>Date Of Donation:</strong> {selectedRequest.donationDate}
+            </p>
           </div>
         </Modal>
       )}
@@ -132,7 +165,7 @@ const ReceivedBloodRequestPage = () => {
   );
 };
 
-const Modal = ({ children, onClose }: {children: any, onClose: any}) => {
+const Modal = ({ children, onClose }: { children: any; onClose: any }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="relative bg-white p-6 rounded-lg shadow-lg">

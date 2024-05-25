@@ -67,7 +67,7 @@ const SentBloodRequestPage = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap">
                   <span
-                    className={`px-2 rounded-md ${
+                    className={`px-2 rounded-md text-white ${
                       item?.status === "PENDING"
                         ? "bg-yellow-500"
                         : item?.status === "REJECTED"

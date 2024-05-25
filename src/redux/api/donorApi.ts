@@ -9,7 +9,36 @@ export const donorApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAllDonors: build.query({
+      query: () => ({
+        url: `/all-donors`,
+        method: "GET",
+      }),
+    }),
+    updateUserStatus: build.mutation({
+      query: ({ id, status }) => {
+        return {
+          url: `/user-status/${id}`,
+          method: "POST",
+          data: { status },
+        };
+      },
+    }),
+    updateUserRole: build.mutation({
+      query: ({ id, role }) => {
+        return {
+          url: `/user-role/${id}`,
+          method: "POST",
+          data: { role },
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetDonorQuery } = donorApi;
+export const {
+  useGetDonorQuery,
+  useGetAllDonorsQuery,
+  useUpdateUserStatusMutation,
+  useUpdateUserRoleMutation,
+} = donorApi;
