@@ -53,15 +53,15 @@ const DonorSection = () => {
   return (
     <div className="max-w-screen-xl mx-auto px-2">
       <h3 className="text-3xl text-center">Search Donor</h3>
-      <div className="flex justify-center space-x-4 p-4 mb-4">
+      <div className="md:grid grid-cols-3 gap-5 py-5 mx-10">
         <select
           value={searchCriteria.bloodType}
           onChange={(e) =>
             handleSearchCriteriaChange("bloodType", e.target.value)
           }
-          className="border border-red-500 px-3 py-2 rounded-lg focus:outline-none focus:border-red-700"
+          className="border w-full md:w0 border-red-500 px-3 py-2 rounded-lg focus:outline-none focus:border-red-700"
         >
-          <option value="">Select Blood Group</option>
+          <option value="">Blood Group</option>
           <option value="A_POS">A+</option>
           <option value="A_NEG">A-</option>
           <option value="B_POS">B+</option>
@@ -76,9 +76,9 @@ const DonorSection = () => {
           onChange={(e) =>
             handleSearchCriteriaChange("canDonateBlood", e.target.value)
           }
-          className="border border-red-500 px-3 py-2 rounded-lg focus:outline-none focus:border-red-700"
+          className="border  w-full md:w0 border-red-500 px-3 py-2 rounded-lg focus:outline-none focus:border-red-700"
         >
-          <option value="">Select Availability</option>
+          <option value="">Availability</option>
           <option value="true">Available</option>
           <option value="false">Unavailable</option>
         </select>
@@ -88,7 +88,7 @@ const DonorSection = () => {
           name="search"
           id="search"
           placeholder="Search by location"
-          className="border border-red-500 px-3 py-2 rounded-lg focus:outline-none focus:border-red-700"
+          className="border w-full border-red-500 px-3 py-2 rounded-lg focus:outline-none focus:border-red-700"
           value={searchCriteria.search}
           onChange={(e) => handleSearchCriteriaChange("search", e.target.value)}
         />
