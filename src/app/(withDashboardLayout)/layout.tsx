@@ -104,7 +104,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </li>
             <li onClick={toggleSidebar}>
               <Link
-                href="/change-password"
+                href="/dashboard/change-password"
                 className="block px-4 py-2 hover:bg-gray-700"
               >
                 Change Password
