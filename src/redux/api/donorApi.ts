@@ -38,6 +38,23 @@ export const donorApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.user],
     }),
+    getMyProfile: build.query({
+      query: () => ({
+        url: `/auth/my-profile`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.user],
+    }),
+    updateProfile: build.mutation({
+      query: (data) => {
+        return {
+          url: `/edit-profile`,
+          method: "PUT",
+          data: data,
+        };
+      },
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -46,4 +63,6 @@ export const {
   useGetAllDonorsQuery,
   useUpdateUserStatusMutation,
   useUpdateUserRoleMutation,
+  useGetMyProfileQuery,
+  useUpdateProfileMutation
 } = donorApi;

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import assets from "@/assets";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -70,7 +72,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </li>
             <li onClick={toggleSidebar}>
               <Link
-                href="/profile"
+                href="/dashboard/profile"
                 className="block px-4 py-2 hover:bg-gray-700"
               >
                 Profile
@@ -91,7 +93,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 href="/dashboard/received-blood-request"
                 className="block px-4 py-2 hover:bg-gray-700"
               >
-                Received Blood Request
+                Received Request
               </Link>
             </li>
             <li onClick={toggleSidebar}>
@@ -99,7 +101,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 href="/dashboard/sent-blood-request"
                 className="block px-4 py-2 hover:bg-gray-700"
               >
-                Send Blood Request
+                Send Request
               </Link>
             </li>
             <li onClick={toggleSidebar}>
@@ -155,27 +157,18 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               )}
             </svg>
           </button>
-          <div className="flex items-center w-full max-w-sm">
-            <input
-              type="search"
-              name="search"
-              id="search"
-              className="rounded-lg px-3 py-2 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:ring-opacity-50 w-full mr-2"
-              placeholder="Search for..."
-            />
-            <svg
-              className="h-6 w-6 text-gray-400"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.5 3A3.5 3.5 0 0 1 13 6.5v7a3.5 3.5 0 0 1-7 0v-7zM5 13.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 0 0-5 0z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <div className="h-1 w-1">
+            
           </div>
-          <h1 className="text-xl font-bold">Admin</h1>
+          <div>
+          <Image
+              src={assets.images.noProfile}
+              height={30}
+              width={30}
+              alt="profile"
+              className="rounded-full"
+            />
+          </div>
         </header>
 
         <main className="flex-1 overflow-y-auto p-6">{children}</main>
