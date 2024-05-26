@@ -12,7 +12,6 @@ const BlogPage = () => {
       <div className="max-w-screen-xl mx-auto px-2">
         <div className="md:grid grid-cols-3 gap-10 py-10">
           {blogs?.map((item: any) => {
-            // Convert createdAt to a readable format
             const formattedDate = new Date(item.createdAt).toLocaleDateString(
               "en-US",
               {
