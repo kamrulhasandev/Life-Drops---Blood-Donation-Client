@@ -47,6 +47,14 @@ const Navbar = () => {
             </Link>
             <Link
               className={`border-b-2 border-transparent hover:border-b-2 hover:border-white hover:transition-all ${
+                pathname === "/blogs" ? "border-b-2 border-white" : ""
+              }`}
+              href={"/blogs"}
+            >
+              Blogs
+            </Link>
+            <Link
+              className={`border-b-2 border-transparent hover:border-b-2 hover:border-white hover:transition-all ${
                 pathname === "/donor-list" ? "border-b-2 border-white" : ""
               }`}
               href={"/donor-list"}
@@ -83,6 +91,15 @@ const Navbar = () => {
               onClick={toggleMobileMenu}
             >
               About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="border-b-2 border-transparent hover:border-b-2 hover:border-[#EB2C29] hover:transition-all"
+              href="/blogs"
+              onClick={toggleMobileMenu}
+            >
+              Blogs
             </Link>
           </li>
           <li>

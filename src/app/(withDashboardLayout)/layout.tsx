@@ -122,6 +122,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               </li>
             )}
+            {userRole === "admin" && (
+              <li onClick={toggleSidebar}>
+                <Link
+                  href={`/dashboard/${userRole}/manage-blog`}
+                  className="block px-4 py-2 hover:bg-gray-700"
+                >
+                 Mange Blogs
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
