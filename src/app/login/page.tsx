@@ -22,6 +22,7 @@ const LoginPage = () => {
         storeUserInfo({ accessToken: res?.data?.accessToken });
         router.push("/dashboard");
       } else {
+        console.log(res);
         setError(res?.message);
       }
     } catch (error: any) {

@@ -44,7 +44,6 @@ const RegisterPage = () => {
         bloodType,
         canDonateBlood: canDonate,
       };
-      console.log(registerData);
 
       try {
         const res = await registerUser(registerData);

@@ -20,7 +20,7 @@ const DonorSection = () => {
 
   const fetchDonors = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/v1/all-donors");
+      const res = await fetch("https://life-drops-server.vercel.app/api/v1/all-donors");
       const { data: fetchedDonors } = await res.json();
       setDonors(fetchedDonors);
     } catch (error) {
@@ -78,7 +78,7 @@ const DonorSection = () => {
           }
           className="border  w-full md:w0 border-red-500 px-3 py-2 rounded-lg focus:outline-none focus:border-red-700"
         >
-          <option value="">Availability</option>
+          
           <option value="true">Available</option>
           <option value="false">Unavailable</option>
         </select>
