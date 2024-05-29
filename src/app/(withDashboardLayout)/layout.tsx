@@ -6,6 +6,8 @@ import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import assets from "@/assets";
+import { FaHome, FaUser, FaInbox, FaPaperPlane, FaLock, FaUsers, FaBlog } from 'react-icons/fa';
+import { MdDashboard } from "react-icons/md";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -66,69 +68,46 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <nav className="mt-5">
           <ul>
             <li onClick={toggleSidebar}>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-700">
-                Home
+              <Link href="/" className=" px-4 py-2 hover:bg-gray-700 flex items-center">
+                <FaHome className="mr-2" /> Home
               </Link>
             </li>
             <li onClick={toggleSidebar}>
-              <Link
-                href="/dashboard/profile"
-                className="block px-4 py-2 hover:bg-gray-700"
-              >
-                Profile
+              <Link href="/dashboard/profile" className=" px-4 py-2 hover:bg-gray-700 flex items-center">
+                <FaUser className="mr-2" /> My Profile
               </Link>
             </li>
             <li onClick={toggleSidebar}>
-              <Link
-                href="/dashboard"
-                className={`block px-4 py-2 hover:bg-gray-700 ${
-                  pathname === "/dashboard" ? "bg-gray-700" : ""
-                }`}
-              >
-                Dashboard
+              <Link href="/dashboard" className={` px-4 py-2 hover:bg-gray-700 flex items-center ${pathname === "/dashboard" ? "bg-gray-700" : ""}`}>
+                <MdDashboard  className="mr-2" /> Dashboard
               </Link>
             </li>
             <li onClick={toggleSidebar}>
-              <Link
-                href="/dashboard/received-blood-request"
-                className="block px-4 py-2 hover:bg-gray-700"
-              >
-                Received Request
+              <Link href="/dashboard/received-blood-request" className=" px-4 py-2 hover:bg-gray-700 flex items-center">
+                <FaInbox className="mr-2" /> Received Request
               </Link>
             </li>
             <li onClick={toggleSidebar}>
-              <Link
-                href="/dashboard/sent-blood-request"
-                className="block px-4 py-2 hover:bg-gray-700"
-              >
-                Send Request
+              <Link href="/dashboard/sent-blood-request" className=" px-4 py-2 hover:bg-gray-700 flex items-center">
+                <FaPaperPlane className="mr-2" /> Send Request
               </Link>
             </li>
             <li onClick={toggleSidebar}>
-              <Link
-                href="/dashboard/change-password"
-                className="block px-4 py-2 hover:bg-gray-700"
-              >
-                Change Password
+              <Link href="/dashboard/change-password" className=" px-4 py-2 hover:bg-gray-700 flex items-center">
+                <FaLock className="mr-2" /> Change Password
               </Link>
             </li>
             {userRole === "super_admin" && (
               <li onClick={toggleSidebar}>
-                <Link
-                  href={`/dashboard/${userRole}/manage-users`}
-                  className="block px-4 py-2 hover:bg-gray-700"
-                >
-                  Manage Users
+                <Link href={`/dashboard/${userRole}/manage-users`} className=" px-4 py-2 hover:bg-gray-700 flex items-center">
+                  <FaUsers className="mr-2" /> Manage Users
                 </Link>
               </li>
             )}
             {userRole === "admin" && (
               <li onClick={toggleSidebar}>
-                <Link
-                  href={`/dashboard/${userRole}/manage-blog`}
-                  className="block px-4 py-2 hover:bg-gray-700"
-                >
-                 Mange Blogs
+                <Link href={`/dashboard/${userRole}/manage-blog`} className=" px-4 py-2 hover:bg-gray-700 flex items-center">
+                  <FaBlog className="mr-2" /> Manage Blogs
                 </Link>
               </li>
             )}

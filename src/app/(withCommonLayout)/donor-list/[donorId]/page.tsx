@@ -81,7 +81,7 @@ const DonorDetails = ({ params }: TParams) => {
             {/* Blood Donation Request Link */}
             <div className="mt-8">
               <Link
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+                className="bg-[#EC2C29] text-white py-2 px-4 rounded hover:bg-[#EC2C40]transition duration-300"
                 href={`request/${data.id}`}
               >
                 Request Blood Donation

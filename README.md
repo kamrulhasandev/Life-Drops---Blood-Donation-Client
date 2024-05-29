@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blood Donation Website Frontend
+
+This is the frontend documentation for the Blood Donation Website. The frontend is built using Next.js, Tailwind CSS, React Icons, and TypeScript.
+
+## Live Demo
+
+[Live Demo Link](https://lifedrops-delta.vercel.app) 
+
+## Features
+
+- **Responsive Design**: Built with Tailwind CSS for a fully responsive design.
+- **Role-Based Access Control**: Different views and functionalities based on user roles.
+- **Authentication**: Secure login and access to user-specific dashboard.
+
+## Tech Stack
+
+- **Next.js**: React framework for server-side rendering and generating static websites.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **React Icons**: Include popular icons in your React projects easily.
+- **TypeScript**: TypeScript adds static typing to JavaScript to help catch errors early.
+
+## Pages and Components
+
+### Navbar
+
+The Navbar includes links to the following pages:
+
+- **Home**
+- **Blogs**
+- **All Donors**
+- **About**
+- **Contact Us**
+- **Login**: Redirects to the login page for authentication.
+
+### Home Page
+
+The Home page includes the following sections:
+
+- **Hero Section**: A welcoming section with a call-to-action to encourage blood donation.
+- **Testimonials**: Section displaying testimonials from donors and recipients.
+- **About**: Brief information about the mission and vision of the blood donation platform.
+- **Donor List**: A list of available donors.
+- **Blogs**: Latest blog posts related to blood donation and health.
+- **Footer**: Contact information, social media links, and additional resources.
+
+### Blogs Page
+
+The Blogs page displays a list of all blog posts with links to read more about each one.
+
+### All Donors Page
+
+The All Donors page allows users to search and view a list of all registered blood donors.
+
+### About Page
+
+The About page provides detailed information about the platform, its mission, and its team.
+
+### Contact Us Page
+
+The Contact Us page includes a form for users to get in touch with the platform administrators.
+
+### Login Page
+
+The Login page allows users to authenticate using their credentials. Successful login redirects users to their dashboard.
+
+### User Dashboard
+
+Once logged in, users can access their dashboard where they can:
+
+- **Request Blood**: Submit a request for blood donation.
+- **Donate Blood**: Manage and accept/reject blood donation requests.
+- **Manage Information**: Update personal information and view donation history.
+- **Edit Profile**: Edit personal details like name, email, and address.
+- **Change Password**: Change the account password.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v14.x or later)
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    ```sh
+    git clone https://github.com/yourusername/blood-donation-frontend.git
+    cd blood-donation-frontend
+    ```
 
-## Learn More
+2. **Install dependencies**:
 
-To learn more about Next.js, take a look at the following resources:
+    ```sh
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    or
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```sh
+    yarn install
+    ```
 
-## Deploy on Vercel
+3. **Set up environment variables**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Create a `.env.local` file in the root directory and add your configuration variables.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    ```env
+    NEXT_PUBLIC_API_URL=http://localhost:3000/api
+    ```
+
+4. **Run the development server**:
+
+    ```sh
+    npm run dev
+    ```
+
+    or
+
+    ```sh
+    yarn dev
+    ```
+
+The development server should now be running at `http://localhost:3000`.
+
+
+## Author
+
+- **Your Name** - [Your GitHub Profile](https://github.com/kamrulhasandev)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
