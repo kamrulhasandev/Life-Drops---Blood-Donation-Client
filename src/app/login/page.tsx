@@ -17,6 +17,7 @@ const LoginPage = () => {
   const handleLogin = async (data: FieldValues) => {
     try {
       const res = await loginUser(data);
+      console.log(res);
       if (res?.data?.accessToken) {
         toast.success("Login Successfully.");
         storeUserInfo({ accessToken: res?.data?.accessToken });

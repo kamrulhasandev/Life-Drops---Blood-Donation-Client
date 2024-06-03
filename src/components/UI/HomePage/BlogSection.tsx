@@ -8,7 +8,7 @@ const BlogSection = () => {
   console.log(blogs);
 
   return (
-    <div className="bg-[#E7E7E7] py-10">
+    <div className="bg-[#E7E7E7] py-20">
       <div className="max-w-screen-xl mx-auto px-2">
         <div className="md:flex gap-10">
           {blogs?.slice(0, 3).map((item: any) => {

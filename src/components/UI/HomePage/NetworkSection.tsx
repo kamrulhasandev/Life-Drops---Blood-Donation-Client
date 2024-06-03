@@ -3,7 +3,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { ImMakeGroup } from "react-icons/im";
 const NetworkSection = () => {
   return (
-    <div className="bg-[#EB2C29] my-20 py-20">
+    <div className="bg-[#EB2C29] mt-20 py-20">
       <div className="max-w-screen-xl mx-auto px-3 text-white">
         <div className="md:flex justify-around items-center ">
           <div className="flex flex-col gap-3 justify-center items-center">

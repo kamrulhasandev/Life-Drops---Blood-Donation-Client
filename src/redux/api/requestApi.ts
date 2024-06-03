@@ -12,6 +12,13 @@ export const requestApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.request],
     }),
+    getAllDonationRequest: build.query({
+      query: () => ({
+        url: `/donation`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.request],
+    }),
     getSentDonationRequest: build.query({
       query: () => ({
         url: `/sent-donation-request`,
@@ -44,4 +51,5 @@ export const {
   useGetSentDonationRequestQuery,
   useGetReceivedDonationRequestQuery,
   useUpdateRequestStatusMutation,
+  useGetAllDonationRequestQuery,
 } = requestApi;

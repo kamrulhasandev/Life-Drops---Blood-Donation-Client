@@ -51,7 +51,7 @@ const DonorListPage = () => {
   });
 
   return (
-    <div className="max-w-screen-xl mx-auto px-2">
+    <div className="max-w-screen-xl mx-auto px-2 py-10">
       <h3 className="text-3xl text-center">Search Donor</h3>
       <div className="md:grid grid-cols-3 gap-5 py-5 mx-10">
         <select
