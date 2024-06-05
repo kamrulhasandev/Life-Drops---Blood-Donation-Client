@@ -1,8 +1,10 @@
 "use client";
+import { useGetMyProfileQuery } from "@/redux/api/donorApi";
 import { useAddRequestMutation } from "@/redux/api/requestApi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
+
 type TParams = {
   params: {
     donorId: string;
@@ -26,11 +28,26 @@ const BloodRequestPage = ({ params }: TParams) => {
   const [error, setError] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [addRequest] = useAddRequestMutation();
+  const { data: myProfile } = useGetMyProfileQuery({});
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    reset,
   } = useForm<TRequest>();
+
+  useEffect(() => {
+    if (myProfile) {
+      setValue("firstName", myProfile.firstName);
+      setValue("lastName", myProfile.lastName);
+      setValue("email", myProfile.email);
+      setValue("phoneNumber", myProfile.phoneNumber);
+      setValue("location", myProfile.location);
+    }
+  }, [myProfile, setValue]);
+
   const handleRequest: SubmitHandler<TRequest> = async (data) => {
     const requestData = {
       ...data,
@@ -43,6 +60,7 @@ const BloodRequestPage = ({ params }: TParams) => {
       if (res?.data?.id) {
         toast.success("Request sent successfully.");
         setError("");
+        reset();
       } else if (res?.error) {
         setError(res.error.message);
       }
@@ -51,8 +69,6 @@ const BloodRequestPage = ({ params }: TParams) => {
       setError(error.message || "An error occurred. Please try again.");
     }
   };
-
-  
 
   return (
     <div className="max-w-screen-xl mx-auto px-2 py-10">

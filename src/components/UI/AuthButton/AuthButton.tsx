@@ -9,7 +9,6 @@ import { useState } from "react";
 
 const AuthButton = () => {
   const userInfo = getUserInfo();
-  console.log(userInfo);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
